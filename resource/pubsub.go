@@ -13,9 +13,9 @@ import (
 )
 
 type PubSubResource struct {
+	AllianceStorage    *storage.AllianceStorage
 	CharacterStorage   *storage.CharacterStorage
 	CorporationStorage *storage.CorporationStorage
-	AllianceStorage    *storage.AllianceStorage
 }
 
 type pushRequest struct {
@@ -52,7 +52,7 @@ func (psr PubSubResource) UpdateCorporation(c *gin.Context) {
 			ID: corporationID,
 		}
 
-		err = psr.CorporationStorage.AddNewCorporation(corporation)
+		err = psr.CorporationStorage.AddNew(corporation)
 		if err != nil {
 			c.String(http.StatusInternalServerError, "")
 			return
@@ -88,7 +88,7 @@ func (psr PubSubResource) UpdateCorporation(c *gin.Context) {
 	corporation.CEOID = esiCorporation.CEOID
 	corporation.FounderID = esiCorporation.FounderID
 
-	err = psr.CorporationStorage.UpdateCorporation(corporation)
+	err = psr.CorporationStorage.Update(corporation)
 	if err != nil {
 
 	}
@@ -123,7 +123,7 @@ func (psr PubSubResource) UpdateCharacter(c *gin.Context) {
 			ID: characterID,
 		}
 
-		err = psr.CharacterStorage.AddNewCharacter(character)
+		err = psr.CharacterStorage.AddNew(character)
 		if err != nil {
 			c.String(http.StatusInternalServerError, "")
 			return
@@ -158,7 +158,7 @@ func (psr PubSubResource) UpdateCharacter(c *gin.Context) {
 	character.RaceID = esiCharacter.RaceID
 	character.SecurityStatus = esiCharacter.SecurityStatus
 
-	err = psr.CharacterStorage.UpdateCharacter(character)
+	err = psr.CharacterStorage.Update(character)
 	if err != nil {
 
 	}

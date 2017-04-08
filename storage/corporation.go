@@ -38,7 +38,7 @@ func (s CorporationStorage) GetOne(id int) (model.Corporation, error) {
 	return corporation, nil
 }
 
-func (s CorporationStorage) AddNewCorporation(corporation model.Corporation) error {
+func (s CorporationStorage) AddNew(corporation model.Corporation) error {
 	err := s.db.Create(&corporation).Error
 	if err != nil {
 		log.Printf("Error while saving new corporation to the database: %v", err)
@@ -47,7 +47,7 @@ func (s CorporationStorage) AddNewCorporation(corporation model.Corporation) err
 	return err
 }
 
-func (s CorporationStorage) UpdateCorporation(corporation model.Corporation) error {
+func (s CorporationStorage) Update(corporation model.Corporation) error {
 	err := s.db.Save(corporation).Error
 	if err != nil {
 		log.Printf("Error while saving corporation to the database: %v", err)
@@ -56,7 +56,7 @@ func (s CorporationStorage) UpdateCorporation(corporation model.Corporation) err
 	return err
 }
 
-func (s CorporationStorage) IsExistingCorporation(id int) (bool, error) {
+func (s CorporationStorage) IsExisting(id int) (bool, error) {
 	_, err := s.GetOne(id)
 
 	if err == nil {

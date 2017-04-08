@@ -35,11 +35,11 @@ func (s AllianceStorage) GetOne(id int) (model.Alliance, error) {
 	return alliance, nil
 }
 
-func (s AllianceStorage) AddNewAlliance(alliance model.Alliance) error {
+func (s AllianceStorage) AddNew(alliance model.Alliance) error {
 	return s.db.Create(&alliance).Error
 }
 
-func (s AllianceStorage) IsExistingAlliance(id int) (bool, error) {
+func (s AllianceStorage) IsExisting(id int) (bool, error) {
 	_, err := s.GetOne(id)
 
 	if err == nil {

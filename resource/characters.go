@@ -9,9 +9,7 @@ import (
 )
 
 type CharactersResource struct {
-	CharacterStorage   *storage.CharacterStorage
-	CorporationStorage *storage.CorporationStorage
-	AllianceStorage    *storage.AllianceStorage
+	CharacterStorage *storage.CharacterStorage
 }
 
 type addCharacter struct {
@@ -37,7 +35,7 @@ func (cr CharactersResource) AddCharacter(c *gin.Context) {
 		return
 	}
 
-	existing, err := cr.CharacterStorage.IsExistingCharacter(in.CharacterID)
+	existing, err := cr.CharacterStorage.IsExisting(in.CharacterID)
 	if err != nil {
 		c.String(http.StatusInternalServerError, err.Error())
 		return

@@ -21,7 +21,7 @@ type Corporation struct {
 
 	Characters []Character
 
-	CreatedAt time.Time  `json:"ommit"`
-	UpdatedAt time.Time  `json:"ommit"`
-	DeletedAt *time.Time `json:"ommit"`
+	CreatedAt time.Time  `json:"-"`
+	UpdatedAt time.Time  `json:"-"`
+	DeletedAt *time.Time `json:"-"`
 }

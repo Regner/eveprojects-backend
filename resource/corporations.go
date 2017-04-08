@@ -9,9 +9,7 @@ import (
 )
 
 type CorporationsResource struct {
-	CharacterStorage   *storage.CharacterStorage
 	CorporationStorage *storage.CorporationStorage
-	AllianceStorage    *storage.AllianceStorage
 }
 
 type addCorporation struct {
@@ -37,7 +35,7 @@ func (cr CorporationsResource) AddCorporation(c *gin.Context) {
 		return
 	}
 
-	existing, err := cr.CorporationStorage.IsExistingCorporation(in.CorporationID)
+	existing, err := cr.CorporationStorage.IsExisting(in.CorporationID)
 	if err != nil {
 		c.String(http.StatusInternalServerError, err.Error())
 		return

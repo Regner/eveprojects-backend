@@ -9,9 +9,7 @@ import (
 )
 
 type AlliancesResource struct {
-	CharacterStorage   *storage.CharacterStorage
-	CorporationStorage *storage.CorporationStorage
-	AllianceStorage    *storage.AllianceStorage
+	AllianceStorage *storage.AllianceStorage
 }
 
 type addAlliance struct {
@@ -37,7 +35,7 @@ func (ar AlliancesResource) AddAlliance(c *gin.Context) {
 		return
 	}
 
-	existing, err := ar.AllianceStorage.IsExistingAlliance(in.AllianceID)
+	existing, err := ar.AllianceStorage.IsExisting(in.AllianceID)
 	if err != nil {
 		c.String(http.StatusInternalServerError, err.Error())
 		return

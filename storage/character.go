@@ -43,7 +43,7 @@ func (s CharacterStorage) GetOne(id int) (model.Character, error) {
 	return character, nil
 }
 
-func (s CharacterStorage) AddNewCharacter(character model.Character) error {
+func (s CharacterStorage) AddNew(character model.Character) error {
 	err := s.db.Create(&character).Error
 	if err != nil {
 		log.Printf("Error while saving new character to the database: %v", err)
@@ -52,7 +52,7 @@ func (s CharacterStorage) AddNewCharacter(character model.Character) error {
 	return err
 }
 
-func (s CharacterStorage) UpdateCharacter(character model.Character) error {
+func (s CharacterStorage) Update(character model.Character) error {
 	err := s.db.Save(character).Error
 	if err != nil {
 		log.Printf("Error while saving character to the database: %v", err)
@@ -61,7 +61,7 @@ func (s CharacterStorage) UpdateCharacter(character model.Character) error {
 	return err
 }
 
-func (s CharacterStorage) IsExistingCharacter(id int) (bool, error) {
+func (s CharacterStorage) IsExisting(id int) (bool, error) {
 	_, err := s.GetOne(id)
 
 	if err == nil {
