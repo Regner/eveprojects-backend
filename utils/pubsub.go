@@ -68,7 +68,9 @@ func UpdateCharacter(id int) {
 func publishMessage(msg []byte, topic *pubsub.Topic) error {
 	ctx := context.Background()
 
-	_, err := topic.Publish(ctx, &pubsub.Message{Data: msg})
+	r := topic.Publish(ctx, &pubsub.Message{Data: msg})
+
+	_, err := r.Get(ctx)
 	if err != nil {
 		log.Printf("Error while publishing to Google PubSub: %v", err)
 		return err

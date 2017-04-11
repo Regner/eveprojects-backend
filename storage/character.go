@@ -32,7 +32,7 @@ func (s CharacterStorage) GetOne(id int) (model.Character, error) {
 	err := s.db.First(&character, id).Error
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
-			log.Printf("The requested character was nto found in the DB: %v", id)
+			log.Printf("The requested character was not found in the DB: %v", id)
 		} else {
 			log.Printf("Error while checking DB for an existing character: %v", err)
 		}

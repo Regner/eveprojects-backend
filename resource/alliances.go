@@ -17,7 +17,7 @@ type addAlliance struct {
 }
 
 func (ar AlliancesResource) GetAllAlliances(c *gin.Context) {
-	alliances, err := ar.AllianceStorage.FindAll()
+	alliances, err := ar.AllianceStorage.All()
 	if err != nil {
 		c.String(http.StatusInternalServerError, err.Error())
 		return

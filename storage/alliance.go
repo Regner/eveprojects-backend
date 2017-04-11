@@ -9,11 +9,11 @@ type AllianceStorage struct {
 	db *gorm.DB
 }
 
-func NewAllianceStorage(db *gorm.DB) *AllianceStorage {
+func NewStorage(db *gorm.DB) *AllianceStorage {
 	return &AllianceStorage{db}
 }
 
-func (s AllianceStorage) FindAll() ([]model.Alliance, error) {
+func (s AllianceStorage) All() ([]model.Alliance, error) {
 	var alliances []model.Alliance
 
 	err := s.db.Find(&alliances).Error
@@ -24,7 +24,7 @@ func (s AllianceStorage) FindAll() ([]model.Alliance, error) {
 	return alliances, nil
 }
 
-func (s AllianceStorage) GetOne(id int) (model.Alliance, error) {
+func (s AllianceStorage) Get(id int) (model.Alliance, error) {
 	var alliance model.Alliance
 
 	err := s.db.First(&alliance, id).Error
@@ -35,12 +35,12 @@ func (s AllianceStorage) GetOne(id int) (model.Alliance, error) {
 	return alliance, nil
 }
 
-func (s AllianceStorage) AddNew(alliance model.Alliance) error {
+func (s AllianceStorage) Create(alliance model.Alliance) error {
 	return s.db.Create(&alliance).Error
 }
 
 func (s AllianceStorage) IsExisting(id int) (bool, error) {
-	_, err := s.GetOne(id)
+	_, err := s.Get(id)
 
 	if err == nil {
 		return true, nil

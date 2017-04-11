@@ -17,6 +17,16 @@ func InitDB() (*gorm.DB, error) {
 		&model.Character{},
 		&model.Alliance{},
 		&model.Corporation{},
+
+		// Inventory
+		&model.InvCategory{},
+		&model.InvGroup{},
+		&model.InvType{},
+
+		// Map
+		&model.MapRegion{},
+		&model.MapConstellation{},
+		&model.MapSystem{},
 	)
 
 	return db, nil

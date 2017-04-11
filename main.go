@@ -21,7 +21,7 @@ func main() {
 
 	characterStorage := storage.NewCharacterStorage(db)
 	corporationStorage := storage.NewCorporationStorage(db)
-	allianceStorage := storage.NewAllianceStorage(db)
+	allianceStorage := storage.NewStorage(db)
 
 	alliances := resource.AlliancesResource{
 		AllianceStorage: allianceStorage,
